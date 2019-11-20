@@ -3,12 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
-    //
-    public function getHome(){
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-      return redirect()->action('catalog\CatalogController@getIndex');
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        //return view('home');
+        if (Auth::check()){
+          return redirect()->action('catalog\CatalogController@getIndex');
+        }else{
+          return view('login');
+        }
+
     }
 }

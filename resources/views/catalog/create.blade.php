@@ -9,7 +9,7 @@
             Añadir película
          </div>
          <div class="card-body" style="padding:30px">
-            <form class="" action="index.html" method="post">
+            <form class="" action="{{ url('catalog/create') }}" method="post">
               @csrf
 
               <div class="form-group">
